@@ -11,9 +11,10 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
-@Path("/businesses")
+@Path("/business")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+//@CrossOrigin(origins = "http://localhost:4200")
 public class BusinessResource {
     @Inject
     BusinessRepository businessRepository;
@@ -30,7 +31,7 @@ public class BusinessResource {
     @Transactional
     public Response addBusiness(Business business) {
         businessRepository.persist(business);
-        return Response.created(URI.create("/businesses/" + business.getId())).build();
+        return Response.created(URI.create("/business/" + business.getId())).build();
     }
 
     @GET
