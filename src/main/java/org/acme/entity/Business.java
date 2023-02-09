@@ -2,6 +2,8 @@ package org.acme.entity;
 
 import javax.persistence.*;
 
+
+//Entity Annotation
 @Entity
 public class Business {
     @Id
@@ -15,6 +17,7 @@ public class Business {
     private String ACN;
     private Boolean active;
 
+    //Constructors
     public Business(Long id, String name, String legalName, String ABN, String ACN, Boolean active) {
         this.id = id;
         this.name = name;

@@ -11,14 +11,18 @@ import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
+// Annotation to define the resource URI path
 @Path("/business")
+// Annotation to specify the media type consumed by the resource
 @Produces(MediaType.APPLICATION_JSON)
+// Annotation to specify the media type produced by the resource
 @Consumes(MediaType.APPLICATION_JSON)
 //@CrossOrigin(origins = "http://localhost:4200")
 public class BusinessResource {
     @Inject
     BusinessRepository businessRepository;
 
+    // Get all businesses in the database
     @GET
     @Path("/all")
     public Response getAll() {
@@ -26,6 +30,7 @@ public class BusinessResource {
         return Response.ok(business).build();
     }
 
+    // Add a new business to the database
     @POST
     @Path("/add")
     @Transactional
@@ -34,6 +39,8 @@ public class BusinessResource {
         return Response.created(URI.create("/business/" + business.getId())).build();
     }
 
+
+    // Get a business by its ID
     @GET
     @Path("/find/id/{id}")
 
@@ -44,6 +51,7 @@ public class BusinessResource {
     }
 
 
+// Get a business by its name
     @GET
     @Path("/find/name/{name}")
 
@@ -56,6 +64,7 @@ public class BusinessResource {
         }
     }
 
+// Get a business by its legal name
     @GET
     @Path("find/legalname/{legalName}")
     public Response getBusinessByLName(@PathParam("legalName") String legalName) {
@@ -67,6 +76,7 @@ public class BusinessResource {
         }
     }
 
+    // Get a business by its ABN
     @GET
     @Path("find/abn/{ABN}")
     public Response getBusinessByAbn(@PathParam("ABN") String ABN) {
@@ -78,6 +88,7 @@ public class BusinessResource {
         }
     }
 
+    // Get a business by its ACN
     @GET
     @Path("find/acn/{ACN}")
     public Response getBusinessByAcn(@PathParam("ACN") String ACN) {
@@ -89,6 +100,7 @@ public class BusinessResource {
         }
     }
 
+    // Update a business
     @PUT
     @Path("/update/{id}")
     @Transactional
@@ -105,6 +117,7 @@ public class BusinessResource {
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
 
+    // Delete a business
     @DELETE
     @Path("/delete/{id}")
     @Transactional
