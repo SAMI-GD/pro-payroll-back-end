@@ -114,7 +114,6 @@ public class BusinessResource {
                     return Response.ok().build();
                 })
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
-        //test
     }
 
 }
